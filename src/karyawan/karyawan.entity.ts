@@ -6,8 +6,10 @@ import {
   UpdateDateColumn,
   OneToOne,
   JoinColumn,
+  OneToMany,
 } from 'typeorm';
 import { User } from '../users/user.entity';
+import { Attendance } from '../attendance/attendance.entity';
 
 export enum JenisKelamin {
   LAKI_LAKI = 'LAKI_LAKI',
@@ -40,6 +42,11 @@ export class Karyawan {
   @OneToOne(() => User, { cascade: true, onDelete: 'CASCADE' })
   @JoinColumn()
   user: User;
+
+  // --- TAMBAHKAN RELASI INI ---
+  @OneToMany(() => Attendance, (attendance) => attendance.karyawan)
+  attendances: Attendance[];
+
 
   @CreateDateColumn()
   created_at: Date;

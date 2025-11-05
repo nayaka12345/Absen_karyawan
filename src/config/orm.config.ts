@@ -4,6 +4,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
 import { User } from '../users/user.entity';
 import { Karyawan } from '../karyawan/karyawan.entity';
+import { Attendance } from '../attendance/attendance.entity';
 
 export const ormConfig = (config: ConfigService): TypeOrmModuleOptions => ({
   type: 'mysql',
@@ -12,6 +13,6 @@ export const ormConfig = (config: ConfigService): TypeOrmModuleOptions => ({
   username: config.get<string>('DATABASE_USER', 'root'),
   password: config.get<string>('DATABASE_PASSWORD', 'root'),
   database: config.get<string>('DATABASE_NAME', 'pt_pkl'),
-  entities: [User, Karyawan],
+  entities: [User, Karyawan , Attendance],
   synchronize: true, // Jangan gunakan di production
 });
